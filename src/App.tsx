@@ -8,10 +8,13 @@ import {
 
 import Login from './components/Login';
 import Register from './components/Register';
-import { getAccessToken } from './auth/auth';
+import { getAccessToken, isAccessTokenExpired } from './auth/auth';
+import FileUpload from './components/FileUpload';
+import MusicPlayer from './components/MusicPlayer';
 
 const App:React.FC = () => {
   const token = getAccessToken();
+  isAccessTokenExpired();
   if (!token) {
     return (
       <BrowserRouter>
@@ -30,7 +33,8 @@ const App:React.FC = () => {
         <Routes>
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register/>} />
-          <Route path="/" element={<h1>logged in</h1>} />
+          <Route path="/" element={<FileUpload/>} />
+          <Route path="/music" element={<MusicPlayer/>} />
         </Routes>
       </BrowserRouter>
     )
