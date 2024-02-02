@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { saveAccessToken } from '../auth/auth';
 import axios from 'axios'; // Import Axios
-
+import { Button } from '@/components/ui/button';
 function Login() {
   const [formData, setFormData] = useState({
     email: '',
@@ -65,7 +65,7 @@ function Login() {
           <input type="password" value={formData.password} name="password" onChange={handleChange} />
         </label>
         <br />
-        <button type="submit">Login</button>
+        <Button type="submit">Login</Button>
       </form>
 
       {error && <div>{error}</div>}
