@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router';
 import {jwtDecode} from 'jwt-decode';
 
-const FileUpload: React.FC = () => {
+function FileUpload(){
     const [file, setFile] = useState<File | null>(null);
     const [title, setTitle] = useState<string>('');
     const [artist, setArtist] = useState<string>('');
@@ -25,7 +25,7 @@ const FileUpload: React.FC = () => {
                 }
             }
             catch (e) {
-                navigate('/');
+                navigate('/upload');
             }
         }
         // ... Perform any other operations with the JWT token
@@ -70,7 +70,7 @@ const FileUpload: React.FC = () => {
     return (
         <div>
             <h2>Upload Song</h2>
-            <div>
+            <div className="">
                 <label>Title:</label>
                 <input type="text" value={title} onChange={handleTitleChange} />
             </div>
