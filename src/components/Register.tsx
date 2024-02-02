@@ -23,9 +23,16 @@ function Register() {
         e.preventDefault();
         try {
           const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/auth/register`, formData);
-          const token = response.data.token; // Assuming your API returns a token
-          saveAccessToken(token);
-        navigate("/");
+          const token = response.data.token;
+           // Assuming your API returns a token
+           if(token){
+            saveAccessToken(token);
+            navigate("/",{ replace: true });
+           }
+          else{
+            console.log("Something went wrong!");
+          }
+        
         } catch (error) {
           console.error(error); // Handle error
         }

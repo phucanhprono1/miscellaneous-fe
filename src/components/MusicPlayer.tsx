@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { getAccessToken } from '../auth/auth';
 
-const MusicPlayer: React.FC = () => {
+const MusicPlayer: React.FC =  () => {
     const [songUrl, setSongUrl] = useState<string | null>(null);
-    const url = `${process.env.REACT_APP_API_URL}/stream`;
+    const url = `${process.env.REACT_APP_API_URL}/stream/3`;
+
     useEffect(() => {
-        // Gọi API để lấy thông tin bài hát với id=1
-        axios.get(url+"/3", { 
+        // Gọi API để lấy thông tin bài hát với id=3
+        axios.get(url, { 
             responseType: 'blob',
             headers: {
-                "Authorization": "Bearer " + localStorage.getItem('accessToken'),
+                "Authorization": "Bearer " + getAccessToken(),
             }
          })
             .then(response => {

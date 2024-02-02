@@ -36,9 +36,15 @@ function Login() {
       });
 
       const data = response.data;
-      console.log('Login success');
-      saveAccessToken(data.token);
-      navigate("/");
+      console.log('Login success', data);
+
+      // Ensure that the token exists in the response
+      if (data.token) {
+        saveAccessToken(data.token);
+        navigate("/",{ replace: true });
+      } else {
+        setError('Wrong email or password');
+      }
     } catch (error) {
       console.log('Error:', error);
       setError('Failed to log in');

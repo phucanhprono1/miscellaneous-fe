@@ -1,4 +1,4 @@
-import { jwtDecode } from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode';
 
 export function saveAccessToken(accessToken: string) {
     localStorage.setItem('accessToken', accessToken);
@@ -14,17 +14,24 @@ export function removeAccessToken() {
 
 export function isAccessTokenExpired() {
     const accessToken = getAccessToken();
-    if (accessToken) {
-        try {
-            const decodedToken: any = jwtDecode(accessToken);
-            if (decodedToken && decodedToken.payload && decodedToken.payload.exp) {
-                const expirationTime = decodedToken.payload.exp * 1000; // Convert to milliseconds
-                const currentTime = Date.now();
-                return currentTime > expirationTime;
-            }
-        } catch (error) {
-            console.error('Error decoding or verifying the access token:', error);
-        }
+
+    if (!accessToken) {
+        return true; // Token is missing
     }
-    return true; // Default to considering the token expired if decoding fails
+
+    try {
+        const decodedToken: any = jwtDecode(accessToken);
+
+        if (decodedToken && decodedToken.exp) {
+            const expirationTime = decodedToken.exp * 1000; // Convert to milliseconds
+            const currentTime = Date.now();
+            return currentTime > expirationTime;
+        } else {
+            return true; // Token is missing expiration information
+        }
+    } catch (error) {
+        console.error('Error decoding or verifying the access token:', error);
+        return true; // Default to considering the token expired if decoding fails
+    }
 }
+

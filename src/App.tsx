@@ -14,20 +14,20 @@ import MusicPlayer from './components/MusicPlayer';
 
 const App:React.FC = () => {
   const token = getAccessToken();
-  isAccessTokenExpired();
+  // isAccessTokenExpired();
   if (!token) {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<Login/>} />
+          <Route path="/login" element={<Login key={Date.now()} />} />
           <Route path="/register" element={<Register/>} />
-          <Route path="/" element={<h1>Not logged in</h1>} />
+          <Route path="/" element={getAccessToken()?<h1>Not logged in</h1>:<FileUpload/>} />
         </Routes>
       </BrowserRouter>
     )
   }
   else{
-    console.log(token)
+    console.log(token );
     return (
       <BrowserRouter>
         <Routes>
