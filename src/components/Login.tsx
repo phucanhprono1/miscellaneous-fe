@@ -2,7 +2,8 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { saveAccessToken } from '../auth/auth';
 import axios from 'axios'; // Import Axios
-import { Button } from '@/components/ui/button';
+import { Button } from './ui/button';
+
 function Login() {
   const [formData, setFormData] = useState({
     email: '',
