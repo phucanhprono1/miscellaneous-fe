@@ -42,7 +42,7 @@ function Login() {
       // Ensure that the token exists in the response
       if (data.token) {
         saveAccessToken(data.token);
-        navigate("/",{ replace: true });
+        navigate("/", { replace: true });
       } else {
         setError('Wrong email or password');
       }
@@ -53,24 +53,42 @@ function Login() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email:
-          <input type="text" value={formData.email} name="email" onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input type="password" value={formData.password} name="password" onChange={handleChange} />
-        </label>
-        <br />
-        <Button type="submit">Login</Button>
-      </form>
 
+    <div>
+      <div className="flex items-center justify-center h-screen">
+        <div className="flex flex-col justify-center w-1/3">
+          <h2>Login</h2>
+          <form onSubmit={handleSubmit} className="mb-4">
+            <label className="block text-sm font-medium text-gray-700">
+              Email:
+              <input
+                type="text"
+                value={formData.email}
+                name="email"
+                onChange={handleChange}
+                className="mt-1 p-2 border rounded-md"
+              />
+            </label>
+            <br />
+            <label className="block text-sm font-medium text-gray-700">
+              Password:
+              <input
+                type="password"
+                value={formData.password}
+                name="password"
+                onChange={handleChange}
+                className="mt-1 p-2 border rounded-md"
+              />
+            </label>
+            <br />
+            <Button className="inline-flex justify-center" variant="secondary" type="submit">
+              Login
+            </Button>
+          </form>
+        </div>
+      </div>
       {error && <div>{error}</div>}
-    </div>
+    </div >
   );
 }
 
