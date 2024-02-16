@@ -22,12 +22,11 @@ function App(){
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/upload" element={<FileUpload />} />
-        <Route path="/music" element={<MusicPlayer id={''} />} />
+        <Route path="/music/:id" element={<MusicPlayer />} />
       </Routes>
     </BrowserRouter>
   )
-
-
 }
+
 
 export default App;

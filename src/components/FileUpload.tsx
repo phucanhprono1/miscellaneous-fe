@@ -57,10 +57,10 @@ function FileUpload(){
                     'Content-Type': 'multipart/form-data',
                     'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
                 },
-            });
-
-            // Handle success, show a message or redirect if needed
-            console.log('File uploaded successfully!');
+            }).then(response => {
+                console.log(response.data);
+            })
+                .catch(error => { console.error('Error uploading file:', error); })
         } catch (error) {
             // Handle errors
             console.error('Error uploading file:', error);

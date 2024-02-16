@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { getAccessToken } from '../auth/auth';
-interface MusicPlayerProps {
-    id: string | number;
-}
+import { useParams } from 'react-router-dom';
 
-function MusicPlayer  ({id}: MusicPlayerProps) {
+function MusicPlayer() {
     const [songUrl, setSongUrl] = useState<string | null>(null);
-    const url = `${process.env.REACT_APP_API_URL}/stream/1`;
+    const { id } = useParams<{ id: string }>(); // Trích xuất id từ URL
 
     useEffect(() => {
-        // Gọi API để lấy thông tin bài hát với id=3
+        const url = `${process.env.REACT_APP_API_URL}/stream/${id}`;
+
+        // Gọi API để lấy thông tin bài hát với id từ URL
         axios.get(url, { 
             responseType: 'blob',
             headers: {
@@ -26,7 +26,7 @@ function MusicPlayer  ({id}: MusicPlayerProps) {
             .catch(error => {
                 console.error('Error fetching song:', error);
             });
-    }, []);
+    }, [id]); // Thêm id vào dependency array để gọi useEffect khi id thay đổi
 
     return (
         <div>
@@ -39,5 +39,6 @@ function MusicPlayer  ({id}: MusicPlayerProps) {
             )}
         </div>
     );
-};
+}
+
 export default MusicPlayer;
