@@ -13,7 +13,7 @@ import FileUpload from './components/FileUpload';
 import MusicPlayer from './components/MusicPlayer';
 import HomePage from './components/HomePage';
 
-const App: React.FC = () => {
+function App(){
 
   return (
     <BrowserRouter>
@@ -22,7 +22,7 @@ const App: React.FC = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/upload" element={<FileUpload />} />
-        <Route path="/music" element={<MusicPlayer />} />
+        <Route path="/music" element={<MusicPlayer id={''} />} />
       </Routes>
     </BrowserRouter>
   )

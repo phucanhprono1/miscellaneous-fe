@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { getAccessToken } from '../auth/auth';
+interface MusicPlayerProps {
+    id: string | number;
+}
 
-const MusicPlayer: React.FC =  () => {
+function MusicPlayer  ({id}: MusicPlayerProps) {
     const [songUrl, setSongUrl] = useState<string | null>(null);
-    const url = `${process.env.REACT_APP_API_URL}/stream/3`;
+    const url = `${process.env.REACT_APP_API_URL}/stream/1`;
 
     useEffect(() => {
         // Gọi API để lấy thông tin bài hát với id=3
