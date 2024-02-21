@@ -59,8 +59,9 @@ function FileUpload(){
                 },
             }).then(response => {
                 console.log(response.data);
+            }).catch(error => {
+                console.error('Error uploading file:', error);
             })
-                .catch(error => { console.error('Error uploading file:', error); })
         } catch (error) {
             // Handle errors
             console.error('Error uploading file:', error);

@@ -37,10 +37,10 @@ function Login() {
       });
 
       const data = response.data;
-      console.log('Login success', data);
+      
 
       // Ensure that the token exists in the response
-      if (data.token) {
+      if (data.token) {console.log('Login success', data);
         saveAccessToken(data.token);
         navigate("/", { replace: true });
       } else {
